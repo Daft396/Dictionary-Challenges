@@ -56,8 +56,93 @@ def merge(dict1,dict2):
             full_d[key]=value
         
     return full_d
-print(merge(dict1,dict2))
-#stuck here, can merge the dictionaries however cannot add the values
+#print(merge(dict1,dict2))
 
+data = {
+  "fruit": ["apple", "banana", "orange"],
+  "colour": ["red", "yellow", "orange"]
+ }
 
+def transform_data(data):
+     list1 = []
+     for item in data:
+         for value in data.get(item):
+             list1.append({item:value})
+     return list1
 
+#print(transform_data(data))
+
+data = {"a": 1, "b": 2, "c": 3}
+
+def remove_and_return(data,value):
+     out = data.get(value)
+     data.pop(value)
+     return out
+
+#print(remove_and_return(data, "b")) # Output: 2
+#print(data) # Output: {'a': 1, 'c': 3}
+
+data = {"x": 10, "y": 20, "z": 30}
+
+def pop_all_values(data):
+     out = []
+     for item in data:
+         out.append(data.get(item))
+
+     while len(data)>0:
+         data.popitem()
+    
+     return(out)
+
+#print(pop_all_values(data)) # Output: [10, 20, 30]
+#print(data) # Output: {}
+
+data = {"p": 5, "q": 15, "r": 25}
+
+def pop_and_sum(data,values):
+     sum = 0
+     for item in data:
+         if item in values:
+             sum += data.get(item)
+    
+     for item in values:
+         if item in data:
+             data.pop(item)
+
+     return sum
+
+#print(pop_and_sum(data, ["p", "r"])) # Output: 30
+#print(data) # Output: {'q': 15}
+
+data = {"m": 7, "n": 14}
+
+def pop_with_default(data,value,default):
+     if value in data:
+         out = data.get(value)
+         data.pop(value)
+         return out
+
+     else:
+         return default
+
+#print(pop_with_default(data, "n", 0)) # Output: 14
+#print(pop_with_default(data, "o", 0)) # Output: 0
+#print(data) # Output: {'m': 7}
+
+data = {"a": 1, "b": 2, "c": 3, "d": 4}
+
+def pop_and_create_new(data, values):
+     newdict = {}
+     for item in data:
+         if item in values:
+             newdict[item] = data.get(item)
+
+     for item in values:
+          if item in data:
+              data.pop(item)
+
+     return newdict
+    
+
+print(pop_and_create_new(data, ["b", "d"])) # Output: {'b': 2, 'd': 4}
+print(data) # Output: {'a': 1, 'c': 3}
